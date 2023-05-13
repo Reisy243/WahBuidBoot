@@ -10,6 +10,7 @@ fi
 mkdir -p $pkgdir/DEBIAN $pkgdir/usr/bin $pkgdir/usr/share/wbb
 mv control $pkgdir/DEBIAN
 mv wbb $pkgdir/usr/bin
+chmod +x $pkgdir/usr/bin/wbb
 tar -xvf Panwah.tar.gz
 mv Panwah $pkgdir/usr/share/wbb
 dpkg-deb --build $pkgdir
