@@ -1,5 +1,5 @@
 srcurl="https://raw.githubusercontent.com/Reisy243/WahBuidBoot/main"
-#curl -O $srcurl/Panwah.tar.gz -O $srcurl/wbb -O $srcurl/pkgs/Debian11/control
+curl -O $srcurl/Panwah.tar.gz -O $srcurl/wbb -O $srcurl/pkgs/Debian11/control
 if [ -d pkg ]; then
 	rm -rvf pkg
 fi
