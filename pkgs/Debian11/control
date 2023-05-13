@@ -1,4 +1,4 @@
-ackage: WahBuildBoot
+Package: WahBuildBoot
 Version: 1.0Alpha
 Section: utils
 Priority: optional
