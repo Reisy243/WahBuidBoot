@@ -1,17 +1,17 @@
 # Maintainer: Reisy Red Panda <reisimineredpanda@gmail.com>
 pkgname=WahBuildBoot
-pkgver=Alpha 1.0
+pkgver="Alpha_1.0"
 pkgrel=1
 pkgdesc="A tool for build a booteable image of Panwah"
 arch=("any")
-url=""
+url="https://reisy243.github.io/panwah"
+srcurl="https://raw.githubusercontent.com/Reisy243/WahBuidBoot/main/"
 license=('unknown')
 depends=(cdrtools squashfs-tools)
-optdepends=()
-source=("wbb"
-	"Panwah.tar.gz")
-Sha256sums=(""	# wbb
-	    "")	# Panwah.tar.gz
+source=("$srcurl/wbb"
+	"$srcurl/Panwah.tar.gz")
+Sha256sums=("126b634a29091aa8236222512d16e0b6be3683cea7b5300c8ca4c73c1dc9d320"	# wbb
+	    "4c52fc4df0f2842e6663da96812b805251685760589eda77d16bc07166f15ee0")	# Panwah.tar.gz
 
 package() {
 	cp wbb $pkgdir/usb/bin
