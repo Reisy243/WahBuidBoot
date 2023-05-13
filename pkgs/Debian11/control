@@ -1,5 +1,5 @@
 Package: WahBuildBoot
-Version: Alpha_1.0
+Version: 1.0_Alpha
 Section: base
 Priority: optional
 Architecture: all
