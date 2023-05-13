@@ -1,5 +1,8 @@
 srcurl="https://raw.githubusercontent.com/Reisy243/WahBuidBoot/main"
-pkgdir="WahBuildBoot-1.0Apha-x86_64"
+name="WahBuildBoot"
+version="1.0Alpha"
+arch="x86_64"
+pkgdir="$name-$version-$arch"
 curl -O $srcurl/Panwah.tar.gz -O $srcurl/wbb -O $srcurl/pkgs/Debian11/control
 if [ -d $pkgdir ]; then
 	rm -rvf $pkgdir
