@@ -1,0 +1,10 @@
+Package: WahBuildBoot
+Version: Alpha_1.0
+Section: base
+Priority: optional
+Architecture: all
+Essential: no
+Depends: genisoimage squashfs-tools
+Maintainer: ReisyRedPanda <reisimineredpanda@gmail.com>
+Installed-Size: 120
+Description: A tool for build a booteable image of Panwah
