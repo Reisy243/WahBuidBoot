@@ -1,0 +1,18 @@
+# Maintainer: Reisy Red Panda <reisimineredpanda@gmail.com>
+pkgname=WahBuildBoot
+pkgver=Alpha 1.0
+pkgrel=1
+pkgdesc="A tool for build a booteable image of Panwah"
+arch=("any")
+url=""
+license=('unknown')
+depends=(cdrtools squashfs-tools)
+optdepends=()
+source=("wbb"
+	"Panwah.tar.gz")
+Sha256sums=(""	# wbb
+	    "")	# Panwah.tar.gz
+
+package() {
+	cp wbb $pkgdir/usb/bin
+}
