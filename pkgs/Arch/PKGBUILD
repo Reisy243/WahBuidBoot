@@ -15,6 +15,7 @@ sha256sums=("126b634a29091aa8236222512d16e0b6be3683cea7b5300c8ca4c73c1dc9d320"	#
 package() {
 	mkdir -p $pkgdir/usr/bin
 	cp -v $srcdir/wbb $pkgdir/usr/bin
+	chmod +x $pkgdir/usr/bin/wbb
 	mkdir -p $pkgdir/usr/share/wbb
 	cp -rv $srcdir/Panwah $pkgdir/usr/share/wbb/
 }
