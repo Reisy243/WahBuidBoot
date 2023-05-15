@@ -1,6 +1,6 @@
 srcurl="https://raw.githubusercontent.com/Reisy243/WahBuidBoot/main"
 name="WahBuildBoot"
-version="1.0Alpha"
+version="1.1Alpha"
 arch="x86_64"
 pkgdir="$name-$version-$arch"
 curl -O $srcurl/Panwah.tar.gz -O $srcurl/wbb -O $srcurl/pkgs/Debian11/control
