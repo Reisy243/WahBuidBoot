@@ -1,0 +1,75 @@
+#!/bin/bash
+Files="$1"
+CONFIG=$1/InfoWBB
+
+function mkroot {
+	echo -e "\e[0;31mDownloading files for new root...\e[0m"
+	echo "New Root:" $Files/Work/$Squash_root
+	if [ -d $Files/$Squash_root ]; then
+		cp -rv $Files/$Squash_root $Files/Work/$Squash_root
+	else
+		echo -e "\e[1;31mERROR: \e[1;37m'$Files/$Squash_root'\e[0m don't exist."
+		exit 1
+	fi
+	pacstrap $Files/Work/$Squash_root ${Packages[@]}
+}
+
+function mksquash {
+	echo -e "\e[0;32mCreating SquashFS...\e[0m"
+	mksquashfs $Files/Work/$Squash_root $Files/Work/$Squash_name.sfs -comp xz
+}
+
+function mkiso {
+	echo -e "\e[0;33mCreating ISO image...\e[0m\nUsing as output directory: $Files/$Output_directory\n"
+	if [ -d $Files/$Output_directory ]; then
+		rm -rvf $Files/$Output_directory
+	fi
+	mkdir -p $Files/$Output_directory
+	if [ -d $Files/$ISOFS ]; then
+		cp -rv $Files/$ISOFS $Files/Work
+	else
+		echo -e "\e[1;31mERROR: \e[1;37m'$Files/$ISOFS'\e[0m don't exist."
+		exit 1
+	fi
+	if [ -f $Files/Work/$Squash_name.sfs ];then
+                echo "SquashFS: $Files/Work/$Squash_name.sfs"
+                mv -v $Files/Work/$Squash_name.sfs $Files/Work/$ISOFS
+        else
+                echo -e "\e[1;31mERROR: \e[1;37m'$Files/Work/$Squash_name.sfs'\e[0m don't exist."
+		echo "Execute mksquashfs before or add your own SquashFS in $Files/Work named $Squash_name.sfs."
+                exit 1
+        fi
+
+	mkisofs -o $Files/$Output_directory/$ISO_Output.iso -b $BIOS_Boot -c boot/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -V "$ISO_Label" $Files/Work/$ISOFS
+	echo -e "\nOutput: $Files/$Output_directory/$ISO_Output.iso\nBIOS Boot Image: $BIOS_Boot\nImage Label: $ISO_Label\nBase for image file system: $Files/$ISOFS\nImage file system: $Files/Work/$ISOFS"
+}
+
+echo -e "\e[38;5;202mWah Build Boot\e[0m"
+
+if [ "$(id -u)" != ""0 ]; then
+	echo -e "\e[1;31mERROR:\e[0m This program only run as \e[1;37mroot\e[0m."
+	exit 1
+fi
+
+if [ -n "$1" ]; then
+	if [ -f "$CONFIG" ]; then
+		source $CONFIG
+		if [ -d $Files/Work ]; then
+			rm -rvf $Files/Work
+		fi
+		mkdir $Files/Work
+		if [ -n "$2" ]; then
+			$2
+		else
+			for (( i-0; i<${#Stages[@]}; i++ ));
+			do
+				${Stages[$i]}
+			done
+		fi
+	else
+        	echo -e "\e[1;31mERROR:\e[0m The configuration file don't exists in \e[1;37m'$1'\e[0m."
+	fi
+else
+	echo -e "\e[1;33mWARNING:\e[0m No configuration folder was provided."
+	echo -e "\e[1;32mUSE:\e[0m $0 <directory with configuration> [Stage (Optional)]"
+fi

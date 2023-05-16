@@ -10,7 +10,7 @@ license=('unknown')
 depends=(cdrtools squashfs-tools)
 source=("$srcurl/wbb"
 	"$srcurl/Panwah.tar.gz")
-sha256sums=("d777b7872303ab341ac9feb5c0779ca4727a0020e2a798e0942918299480c374"	# wbb
+sha256sums=("0d10eeea7d2153665c58f64edd0cfb53c6e24dbbe1c911d642ca6bc28150bbff"	# wbb
 	    "26245a74f1b7a295458ee4d90ab082a5ac25f8e68ae27f2f83bebb4858e7686a")	# Panwah.tar.gz
 package() {
 	mkdir -p $pkgdir/usr/bin
