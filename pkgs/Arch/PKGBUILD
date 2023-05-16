@@ -1,7 +1,7 @@
 # Maintainer: Reisy Red Panda <reisimineredpanda@gmail.com>
 pkgname=WahBuildBoot
 pkgver="Alpha_1.1"
-pkgrel=2
+pkgrel=3
 pkgdesc="A tool for build a booteable image of Panwah"
 arch=("any")
 url="https://reisy243.github.io/panwah"
